@@ -11,6 +11,7 @@ import {
   FiPhone,
 } from "react-icons/fi";
 import toast from "react-hot-toast";
+import logo from "../assets/logo.png";
 import "../styles/components.css";
 
 export default function RegisterPage() {
@@ -89,23 +90,18 @@ export default function RegisterPage() {
               gap: 8,
             }}
           >
-            <div
+            <img
+              src={logo}
+              alt="LAAQS logo"
               style={{
                 width: 56,
                 height: 56,
                 borderRadius: 13,
-                background: "var(--accent)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "'Playfair Display',serif",
-                fontSize: "1.4rem",
-                fontWeight: 700,
-                color: "#fff",
+                objectFit: "contain",
+                background: "#fff",
+                padding: 8,
               }}
-            >
-              L
-            </div>
+            />
             <span style={{ color: "rgba(255,255,255,.85)", fontWeight: 600 }}>
               LAAQS Member Portal
             </span>

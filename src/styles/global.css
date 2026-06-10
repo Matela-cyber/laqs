@@ -8,11 +8,15 @@
 
 /* ── CSS Variables ── */
 :root {
-  --primary: #1a3c5e; /* deep navy */
-  --primary-dark: #112844;
-  --accent: #c8922a; /* gold */
-  --accent-light: #f0b84a;
-  --text: #1e2a38;
+  --primary: #0f2640; /* navy blue */
+  --primary-dark: #071724;
+  --primary-light: #1a4a7a;
+  --secondary: #102d56; /* deep navy */
+  --accent: #c3922a; /* gold */
+  --accent-light: #e0b765;
+  --info: #0c3263; /* navy accent */
+  --info-light: #2b5b94;
+  --text: #17202e;
   --text-muted: #6b7280;
   --bg: #f8f9fb;
   --bg-white: #ffffff;
@@ -73,12 +77,31 @@ textarea {
   padding: 0 24px;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.divider {
+  width: 72px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 999px;
+  margin: 0 auto;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
 /* ── Section Spacing ── */
 .section {
-  padding: 88px 0;
+  padding: 72px 0;
 }
 .section-sm {
-  padding: 56px 0;
+  padding: 48px 0;
 }
 
 /* ── Section Headings ── */

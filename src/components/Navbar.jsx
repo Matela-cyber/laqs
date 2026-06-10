@@ -17,6 +17,7 @@ import {
   FiLayout,
   FiShoppingBag,
 } from "react-icons/fi";
+import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 
 export default function Navbar() {
@@ -37,16 +38,48 @@ export default function Navbar() {
       className="navbar"
       style={scrolled ? { boxShadow: "0 4px 20px rgba(0,0,0,.3)" } : {}}
     >
-      {/* Top bar */}
+      {/* Top bar with auth buttons */}
       <div className="navbar-top">
-        <div className="container">
-          <span>
-            📍 Maseru, Lesotho &nbsp;|&nbsp; Promoting Excellence in Quantity
-            Surveying
-          </span>
+        <div className="container navbar-top-container">
           <div className="navbar-top-right">
-            <a href="mailto:info@laaqs.org.ls">info@laaqs.org.ls</a>
-            <a href="tel:+26622000000">+266 2200 0000</a>
+            {currentUser ? (
+              <>
+                <Link to="/news" className="btn-stay-informed">
+                  Stay Informed
+                </Link>
+                <Link
+                  to="/dashboard"
+                  className="btn btn-sm"
+                  style={{ background: "rgba(255,255,255,.15)", color: "#fff" }}
+                >
+                  <FiUser size={14} />{" "}
+                  {currentUser.displayName?.split(" ")[0] || "Account"}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="btn btn-sm"
+                  style={{
+                    background: "rgba(255,255,255,.1)",
+                    color: "#fff",
+                    border: "none",
+                  }}
+                >
+                  <FiLogOut size={14} />
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn-auth btn-signin">
+                  Sign In
+                </Link>
+                <Link to="/register" className="btn-auth btn-register">
+                  Register
+                </Link>
+                <Link to="/news" className="btn-stay-informed">
+                  Stay Informed
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -56,12 +89,30 @@ export default function Navbar() {
         <div className="container">
           {/* Brand */}
           <Link to="/" className="navbar-brand" onClick={close}>
-            <div className="navbar-brand-logo">L</div>
+            <div className="navbar-brand-logo">
+              <img src={logo} alt="LAAQS logo" />
+            </div>
             <div className="navbar-brand-text">
               <strong>LAAQS</strong>
               <span>Lesotho Association of Architects &amp; QS</span>
             </div>
           </Link>
+
+          {/* Quick Action Buttons */}
+          <div className="navbar-quick-actions">
+            <Link to="/members" className="quick-action-btn">
+              <FiUsers size={18} />
+              <span>Find a QS</span>
+            </Link>
+            <Link to="/members" className="quick-action-btn">
+              <FiBriefcase size={18} />
+              <span>Opportunities</span>
+            </Link>
+            <Link to="/shop" className="quick-action-btn">
+              <FiShoppingBag size={18} />
+              <span>Shop</span>
+            </Link>
+          </div>
 
           {/* Links */}
           <div className={`navbar-links${mobileOpen ? " open" : ""}`}>
@@ -119,60 +170,7 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          {/* Auth actions */}
           <div className="navbar-actions">
-            {currentUser ? (
-              <>
-                {userRole === "admin" && (
-                  <Link
-                    to="/admin"
-                    className="btn btn-sm btn-outline"
-                    style={{
-                      color: "#fff",
-                      borderColor: "rgba(255,255,255,.4)",
-                    }}
-                  >
-                    <FiLayout size={14} /> Admin
-                  </Link>
-                )}
-                <Link
-                  to="/dashboard"
-                  className="btn btn-sm btn-outline"
-                  style={{ color: "#fff", borderColor: "rgba(255,255,255,.4)" }}
-                >
-                  <FiUser size={14} />{" "}
-                  {currentUser.displayName?.split(" ")[0] || "Account"}
-                </Link>
-                <button
-                  onClick={logout}
-                  className="btn btn-sm"
-                  style={{
-                    background: "rgba(255,255,255,.1)",
-                    color: "#fff",
-                    border: "none",
-                  }}
-                >
-                  <FiLogOut size={14} />
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="btn btn-sm"
-                  style={{
-                    color: "#fff",
-                    background: "transparent",
-                    border: "1px solid rgba(255,255,255,.3)",
-                  }}
-                >
-                  Sign In
-                </Link>
-                <Link to="/register" className="btn btn-sm btn-primary">
-                  Join Now
-                </Link>
-              </>
-            )}
             <button
               className="navbar-toggle"
               onClick={() => setMobileOpen((o) => !o)}

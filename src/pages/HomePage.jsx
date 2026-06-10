@@ -207,10 +207,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="scroll-hint">
-          <span>Scroll</span>
-          <div className="scroll-hint-line" />
-        </div>
       </section>
 
       {/* ── Features ── */}
@@ -242,14 +238,7 @@ export default function HomePage() {
       {/* ── About strip ── */}
       <section className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 64,
-              alignItems: "center",
-            }}
-          >
+          <div className="about-strip">
             <div>
               <span className="section-label">About LAAQS</span>
               <h2 className="section-title">
@@ -305,42 +294,14 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div style={{ position: "relative" }}>
+            <div className="about-image-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=500&fit=crop"
                 alt="Construction professionals"
-                style={{
-                  borderRadius: "var(--radius-lg)",
-                  width: "100%",
-                  objectFit: "cover",
-                  height: 440,
-                  boxShadow: "var(--shadow-lg)",
-                }}
               />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: -24,
-                  left: -24,
-                  background: "var(--accent)",
-                  color: "#fff",
-                  padding: "20px 28px",
-                  borderRadius: "var(--radius-lg)",
-                  boxShadow: "var(--shadow-md)",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: "2rem",
-                    fontWeight: 700,
-                  }}
-                >
-                  20+
-                </div>
-                <div style={{ fontSize: ".82rem", opacity: 0.9 }}>
-                  Years of Professional Excellence
-                </div>
+              <div className="about-highlight">
+                <strong>20+</strong>
+                <span>Years of Professional Excellence</span>
               </div>
             </div>
           </div>

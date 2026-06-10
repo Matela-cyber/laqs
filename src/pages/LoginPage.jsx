@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from "react-icons/fi";
 import toast from "react-hot-toast";
+import logo from "../assets/logo.png";
 import "../styles/components.css";
 
 export default function LoginPage() {
@@ -57,23 +58,18 @@ export default function LoginPage() {
               gap: 8,
             }}
           >
-            <div
+            <img
+              src={logo}
+              alt="LAAQS logo"
               style={{
                 width: 60,
                 height: 60,
                 borderRadius: 14,
-                background: "var(--accent)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "'Playfair Display',serif",
-                fontSize: "1.6rem",
-                fontWeight: 700,
-                color: "#fff",
+                objectFit: "contain",
+                background: "#fff",
+                padding: 8,
               }}
-            >
-              L
-            </div>
+            />
             <span
               style={{
                 color: "rgba(255,255,255,.85)",
