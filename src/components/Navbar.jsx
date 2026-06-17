@@ -24,6 +24,7 @@ export default function Navbar() {
   const { currentUser, userRole, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({});
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,6 +33,20 @@ export default function Navbar() {
   }, []);
 
   const close = () => setMobileOpen(false);
+
+  // Toggle dropdown in mobile view
+  const toggleDropdown = (dropdownName) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [dropdownName]: !prev[dropdownName],
+    }));
+  };
+
+  // Close all dropdowns when closing mobile menu
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setOpenDropdowns({});
+  };
 
   return (
     <nav
@@ -88,7 +103,7 @@ export default function Navbar() {
       <div className="navbar-main">
         <div className="container">
           {/* Brand */}
-          <Link to="/" className="navbar-brand" onClick={close}>
+          <Link to="/" className="navbar-brand" onClick={closeMobileMenu}>
             <div className="navbar-brand-logo">
               <img src={logo} alt="LAAQS logo" />
             </div>
@@ -116,56 +131,72 @@ export default function Navbar() {
 
           {/* Links */}
           <div className={`navbar-links${mobileOpen ? " open" : ""}`}>
-            <NavLink to="/" end onClick={close}>
+            <NavLink to="/" end onClick={closeMobileMenu}>
               <FiHome /> Home
             </NavLink>
-            <NavLink to="/about" onClick={close}>
+            <NavLink to="/about" onClick={closeMobileMenu}>
               <FiInfo /> About
             </NavLink>
 
             {/* Membership dropdown */}
-            <div className="nav-dropdown">
-              <button className="nav-dropdown-trigger">
-                <FiUsers /> Membership <FiChevronDown size={13} />
+            <div
+              className={`nav-dropdown${openDropdowns.membership ? " open" : ""}`}
+            >
+              <button
+                className="nav-dropdown-trigger"
+                onClick={() => toggleDropdown("membership")}
+                aria-expanded={openDropdowns.membership}
+              >
+                <span>
+                  <FiUsers /> Membership
+                </span>
+                <FiChevronDown size={13} />
               </button>
               <div className="nav-dropdown-menu">
-                <NavLink to="/membership" onClick={close}>
+                <NavLink to="/membership" onClick={closeMobileMenu}>
                   <FiUsers /> Join / Apply
                 </NavLink>
-                <NavLink to="/membership/types" onClick={close}>
+                <NavLink to="/membership/types" onClick={closeMobileMenu}>
                   <FiFileText /> Membership Types
                 </NavLink>
-                <NavLink to="/members" onClick={close}>
+                <NavLink to="/members" onClick={closeMobileMenu}>
                   <FiUsers /> Member Directory
                 </NavLink>
               </div>
             </div>
 
             {/* CPD dropdown */}
-            <div className="nav-dropdown">
-              <button className="nav-dropdown-trigger">
-                <FiBook /> CPD <FiChevronDown size={13} />
+            <div className={`nav-dropdown${openDropdowns.cpd ? " open" : ""}`}>
+              <button
+                className="nav-dropdown-trigger"
+                onClick={() => toggleDropdown("cpd")}
+                aria-expanded={openDropdowns.cpd}
+              >
+                <span>
+                  <FiBook /> CPD
+                </span>
+                <FiChevronDown size={13} />
               </button>
               <div className="nav-dropdown-menu">
-                <NavLink to="/cpd" onClick={close}>
+                <NavLink to="/cpd" onClick={closeMobileMenu}>
                   <FiBook /> Courses & Events
                 </NavLink>
-                <NavLink to="/cpd/certificates" onClick={close}>
+                <NavLink to="/cpd/certificates" onClick={closeMobileMenu}>
                   <FiFileText /> My Certificates
                 </NavLink>
               </div>
             </div>
 
-            <NavLink to="/news" onClick={close}>
+            <NavLink to="/news" onClick={closeMobileMenu}>
               <FiFileText /> News
             </NavLink>
-            <NavLink to="/jobs" onClick={close}>
+            <NavLink to="/jobs" onClick={closeMobileMenu}>
               <FiBriefcase /> Jobs
             </NavLink>
-            <NavLink to="/shop" onClick={close}>
+            <NavLink to="/shop" onClick={closeMobileMenu}>
               <FiShoppingBag /> Shop
             </NavLink>
-            <NavLink to="/contact" onClick={close}>
+            <NavLink to="/contact" onClick={closeMobileMenu}>
               <FiMail /> Contact
             </NavLink>
           </div>
@@ -174,6 +205,7 @@ export default function Navbar() {
             <button
               className="navbar-toggle"
               onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Toggle menu"
             >
               {mobileOpen ? <FiX /> : <FiMenu />}
             </button>

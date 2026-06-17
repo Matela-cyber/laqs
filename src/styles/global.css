@@ -182,6 +182,36 @@ textarea {
   font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+  .btn {
+    padding: 9px 20px;
+    font-size: 0.85rem;
+  }
+  .btn-lg {
+    padding: 11px 28px;
+    font-size: 0.9rem;
+  }
+  .btn-sm {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+  .btn-lg {
+    padding: 9px 20px;
+    font-size: 0.85rem;
+  }
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
 /* ── Cards ── */
 .card {
   background: var(--bg-white);
@@ -261,6 +291,22 @@ textarea.form-control {
   min-height: 110px;
 }
 
+@media (max-width: 560px) {
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+  }
+  .form-control {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+  textarea.form-control {
+    min-height: 90px;
+  }
+}
 /* ── Grid Helpers ── */
 .grid-2 {
   display: grid;
@@ -291,9 +337,24 @@ textarea.form-control {
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
   .section {
-    padding: 60px 0;
+    padding: 40px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  .section {
+    padding: 32px 0;
+  }
+  body {
+    font-size: 14px;
   }
 }
 
@@ -327,6 +388,28 @@ textarea.form-control {
 .page-hero p {
   font-size: 1.05rem;
   opacity: 0.85;
+}
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 60px 0 48px;
+  }
+  .page-hero h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  }
+  .page-hero p {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 560px) {
+  .page-hero {
+    padding: 40px 0 32px;
+  }
+  .page-hero h1 {
+    font-size: clamp(1.3rem, 2.8vw, 2rem);
+  }
+  .page-hero p {
+    font-size: 0.88rem;
+  }
 }
 .breadcrumb {
   display: flex;
