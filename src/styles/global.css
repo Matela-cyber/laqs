@@ -323,6 +323,28 @@ textarea.form-control {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
+.jobs-layout,
+.shop-layout,
+.cpd-info-layout {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+}
+.jobs-layout {
+  grid-template-columns: 380px 1fr;
+}
+.shop-layout {
+  grid-template-columns: 1fr 340px;
+}
+.cpd-info-layout {
+  grid-template-columns: 1fr 1fr;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
 
 @media (max-width: 900px) {
   .grid-4 {
@@ -331,7 +353,25 @@ textarea.form-control {
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
+  .jobs-layout,
+  .shop-layout,
+  .cpd-info-layout,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .jobs-layout .sticky-panel,
+  .shop-layout .sticky-panel {
+    position: static;
+    top: auto;
+  }
 }
+
+.jobs-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
 @media (max-width: 600px) {
   .grid-2,
   .grid-3,

@@ -72,17 +72,30 @@ export default function MembershipPage() {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    email: currentUser?.email || "",
     phone: "",
+    dateOfBirth: "",
+    nationality: "",
+    gender: "",
+    residentialAddress: "",
     profession: "",
     employer: "",
+    employmentHistory: "",
+    fieldOfPractice: "",
+    otherPractice: "",
     qualifications: "",
+    professionalBodies: "",
     referees: "",
     motivation: "",
+    declarationAccepted: false,
+    annexures: "",
   });
 
-  const handleChange = (e) =>
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm((f) => ({ ...f, [e.target.name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -118,10 +131,10 @@ export default function MembershipPage() {
           <div className="breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>Membership</span>
           </div>
-          <h1>Join LAAQS</h1>
+          <h1>Membership Application</h1>
           <p>
-            Apply for membership and become part of Lesotho's premier
-            professional body
+            Apply for a new membership category or upgrade your existing
+            membership online.
           </p>
         </div>
       </div>
@@ -218,8 +231,8 @@ export default function MembershipPage() {
                 Select Membership Type
               </h2>
               <p className="section-sub" style={{ marginBottom: 40 }}>
-                Choose the category that best describes your professional
-                status.
+                Choose the category that best describes your professional status
+                and select the membership level you want to apply for.
               </p>
               <div className="grid-4" style={{ marginBottom: 40 }}>
                 {TYPES.map((t) => (
@@ -303,7 +316,8 @@ export default function MembershipPage() {
                 Your Details
               </h2>
               <p className="section-sub" style={{ marginBottom: 36 }}>
-                Please fill in your professional information accurately.
+                Please complete the personal and professional details below as
+                they appear on your identification documents.
               </p>
               <div
                 style={{
@@ -335,6 +349,57 @@ export default function MembershipPage() {
                       onChange={handleChange}
                       required
                       placeholder="e.g. Mokhele"
+                    />
+                  </div>
+                </div>
+                <div className="grid-2">
+                  <div className="form-group">
+                    <label>Date of Birth *</label>
+                    <input
+                      name="dateOfBirth"
+                      type="date"
+                      className="form-control"
+                      value={form.dateOfBirth}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Nationality</label>
+                    <input
+                      name="nationality"
+                      className="form-control"
+                      value={form.nationality}
+                      onChange={handleChange}
+                      placeholder="e.g. Mosotho"
+                    />
+                  </div>
+                </div>
+                <div className="grid-2">
+                  <div className="form-group">
+                    <label>Gender / Sex</label>
+                    <select
+                      name="gender"
+                      className="form-control"
+                      value={form.gender}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select</option>
+                      <option>Female</option>
+                      <option>Male</option>
+                      <option>Non-binary</option>
+                      <option>Prefer not to say</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Residential Address *</label>
+                    <input
+                      name="residentialAddress"
+                      className="form-control"
+                      value={form.residentialAddress}
+                      onChange={handleChange}
+                      required
+                      placeholder="Physical address"
                     />
                   </div>
                 </div>
@@ -395,7 +460,47 @@ export default function MembershipPage() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Academic Qualifications *</label>
+                  <label>Employment History *</label>
+                  <textarea
+                    name="employmentHistory"
+                    className="form-control"
+                    value={form.employmentHistory}
+                    onChange={handleChange}
+                    rows={3}
+                    placeholder="Company, role, years served"
+                    required
+                  />
+                </div>
+                <div className="grid-2">
+                  <div className="form-group">
+                    <label>Field of Practice</label>
+                    <select
+                      name="fieldOfPractice"
+                      className="form-control"
+                      value={form.fieldOfPractice}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select</option>
+                      <option>Building Construction</option>
+                      <option>Civil Engineering</option>
+                      <option>Electrical / Mechanical</option>
+                      <option>Architecture</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Other Practice (if any)</label>
+                    <input
+                      name="otherPractice"
+                      className="form-control"
+                      value={form.otherPractice}
+                      onChange={handleChange}
+                      placeholder="Please specify"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label>Educational Qualifications *</label>
                   <textarea
                     name="qualifications"
                     className="form-control"
@@ -404,6 +509,17 @@ export default function MembershipPage() {
                     rows={3}
                     placeholder="e.g. BSc Quantity Surveying – NUL, 2020"
                     required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Other Professional Institutes</label>
+                  <textarea
+                    name="professionalBodies"
+                    className="form-control"
+                    value={form.professionalBodies}
+                    onChange={handleChange}
+                    rows={3}
+                    placeholder="Institute name, grade, membership number"
                   />
                 </div>
                 <div className="form-group">
@@ -428,6 +544,45 @@ export default function MembershipPage() {
                     placeholder="Why do you want to join LAAQS?"
                   />
                 </div>
+                <div
+                  style={{
+                    background: "var(--bg)",
+                    borderRadius: "var(--radius)",
+                    padding: "16px 18px",
+                    marginTop: 8,
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="declarationAccepted"
+                      checked={form.declarationAccepted}
+                      onChange={handleChange}
+                      style={{ marginTop: 4 }}
+                    />
+                    <span style={{ fontSize: ".88rem", lineHeight: 1.6 }}>
+                      I confirm that the information provided is true and that I
+                      consent to LAAQS verifying it. I understand that certified
+                      supporting documents may be requested.
+                    </span>
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label>Required Annexures</label>
+                  <input
+                    name="annexures"
+                    className="form-control"
+                    value={form.annexures}
+                    onChange={handleChange}
+                    placeholder="Certified ID/passport, certificates, professional membership proof"
+                  />
+                </div>
               </div>
               <div
                 style={{
@@ -442,8 +597,21 @@ export default function MembershipPage() {
                 </button>
                 <button
                   onClick={() => {
-                    if (!form.firstName || !form.email || !form.profession) {
-                      toast.error("Please fill in all required fields.");
+                    if (
+                      !form.firstName ||
+                      !form.lastName ||
+                      !form.email ||
+                      !form.phone ||
+                      !form.dateOfBirth ||
+                      !form.residentialAddress ||
+                      !form.profession ||
+                      !form.employmentHistory ||
+                      !form.qualifications ||
+                      !form.declarationAccepted
+                    ) {
+                      toast.error(
+                        "Please complete all required fields and confirm the declaration.",
+                      );
                       return;
                     }
                     setStep(3);
@@ -486,13 +654,29 @@ export default function MembershipPage() {
                   {TYPES.find((t) => t.id === selectedType)?.name} —{" "}
                   {TYPES.find((t) => t.id === selectedType)?.fee}
                 </div>
+                <div
+                  style={{
+                    background: "var(--bg)",
+                    borderRadius: "var(--radius)",
+                    padding: "16px 20px",
+                    marginBottom: 24,
+                  }}
+                >
+                  <strong>Application Purpose:</strong> New application or
+                  membership upgrade request.
+                </div>
                 {[
                   ["Full Name", `${form.firstName} ${form.lastName}`],
+                  ["Date of Birth", form.dateOfBirth],
                   ["Email", form.email],
                   ["Phone", form.phone],
+                  ["Address", form.residentialAddress],
                   ["Profession", form.profession],
                   ["Employer / University", form.employer],
+                  ["Employment History", form.employmentHistory],
                   ["Qualifications", form.qualifications],
+                  ["Other Professional Institutes", form.professionalBodies],
+                  ["Required Annexures", form.annexures],
                 ].map(
                   ([label, value]) =>
                     value && (
@@ -566,8 +750,8 @@ export default function MembershipPage() {
                 }}
               >
                 Thank you for applying to LAAQS. Your application is under
-                review. You'll receive an email confirmation within 5–7 business
-                days. Welcome to the LAAQS community!
+                review and can be tracked from your dashboard. You'll receive an
+                email confirmation within 5–7 business days.
               </p>
               <div
                 style={{ display: "flex", gap: 16, justifyContent: "center" }}

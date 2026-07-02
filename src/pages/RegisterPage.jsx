@@ -133,7 +133,8 @@ export default function RegisterPage() {
               marginBottom: 28,
             }}
           >
-            Join the LAAQS professional community
+            Create a separate account to submit a membership application and
+            track its progress.
           </p>
 
           <form onSubmit={handleSubmit}>

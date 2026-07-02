@@ -9,7 +9,10 @@ import "../styles/components.css";
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    email: "tebohomatela@gmail.com",
+    password: "matelapass",
+  });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -107,7 +110,8 @@ export default function LoginPage() {
               marginBottom: 28,
             }}
           >
-            Welcome back to your LAAQS member portal
+            Sign in to track your membership application or upgrade your
+            membership.
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -228,7 +232,8 @@ export default function LoginPage() {
             textAlign: "center",
           }}
         >
-          <strong>Demo:</strong> Register a new account to test the system
+          <strong>Demo access:</strong> use tebohomatela@gmail.com and
+          matelapass to view the member portal.
         </div>
       </div>
     </div>

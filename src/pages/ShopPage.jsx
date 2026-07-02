@@ -134,14 +134,7 @@ export default function ShopPage() {
 
       <section className="section" style={{ background: "var(--bg)" }}>
         <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 340px",
-              gap: 36,
-              alignItems: "start",
-            }}
-          >
+          <div className="shop-layout">
             {/* Main content */}
             <div>
               {/* Tabs */}
@@ -374,13 +367,12 @@ export default function ShopPage() {
 
             {/* Cart */}
             <div
+              className="sticky-panel"
               style={{
                 background: "#fff",
                 borderRadius: "var(--radius-lg)",
                 padding: "28px",
                 border: "1px solid var(--border)",
-                position: "sticky",
-                top: 90,
                 boxShadow: "var(--shadow-sm)",
               }}
             >

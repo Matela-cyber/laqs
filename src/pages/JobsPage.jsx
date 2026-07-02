@@ -9,7 +9,6 @@ import {
   FiClock,
   FiCalendar,
   FiArrowRight,
-  FiDollarSign,
 } from "react-icons/fi";
 import toast from "react-hot-toast";
 import "../styles/components.css";
@@ -177,7 +176,7 @@ export default function JobsPage() {
               border: "1px solid var(--border)",
             }}
           >
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <div className="jobs-filters" style={{ gap: 14 }}>
               <div style={{ position: "relative", flex: "1 1 280px" }}>
                 <FiSearch
                   style={{
@@ -198,7 +197,7 @@ export default function JobsPage() {
               </div>
               <select
                 className="form-control"
-                style={{ flex: "0 0 200px" }}
+                style={{ minWidth: 180, flex: "1 1 180px" }}
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
@@ -208,7 +207,7 @@ export default function JobsPage() {
               </select>
               <select
                 className="form-control"
-                style={{ flex: "0 0 160px" }}
+                style={{ minWidth: 160, flex: "1 1 160px" }}
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
@@ -220,14 +219,7 @@ export default function JobsPage() {
           </div>
 
           {/* Two-column layout */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "380px 1fr",
-              gap: 24,
-              alignItems: "start",
-            }}
-          >
+          <div className="jobs-layout">
             {/* Job list */}
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <p
@@ -311,7 +303,7 @@ export default function JobsPage() {
                         color: "var(--text-muted)",
                       }}
                     >
-                      <FiDollarSign size={11} /> {job.salary}
+                      {job.salary}
                     </span>
                   </div>
                 </div>
@@ -326,14 +318,13 @@ export default function JobsPage() {
             {/* Job detail */}
             {activeJob && (
               <div
+                className="sticky-panel"
                 style={{
                   background: "#fff",
                   borderRadius: "var(--radius-lg)",
                   padding: "36px",
                   boxShadow: "var(--shadow-sm)",
                   border: "1px solid var(--border)",
-                  position: "sticky",
-                  top: 90,
                 }}
               >
                 <div
@@ -365,17 +356,10 @@ export default function JobsPage() {
                   {activeJob.company}
                 </h4>
 
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: 12,
-                    marginBottom: 28,
-                  }}
-                >
+                <div className="detail-grid">
                   {[
                     [FiMapPin, "Location", activeJob.location],
-                    [FiDollarSign, "Salary", activeJob.salary],
+                    [null, "Salary", activeJob.salary],
                     [FiBriefcase, "Category", activeJob.category],
                     [
                       FiCalendar,
@@ -405,7 +389,7 @@ export default function JobsPage() {
                           marginBottom: 4,
                         }}
                       >
-                        <Icon size={12} /> {label}
+                        {Icon && <Icon size={12} />} {label}
                       </div>
                       <div style={{ fontSize: ".88rem", fontWeight: 600 }}>
                         {val}

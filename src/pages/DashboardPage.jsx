@@ -340,6 +340,42 @@ export default function DashboardPage() {
           </div>
         )}
 
+        <div style={{ marginBottom: 24 }}>
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: "var(--radius-lg)",
+              padding: "24px 28px",
+              border: "1px solid var(--border)",
+              boxShadow: "var(--shadow-sm)",
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 16,
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <div>
+              <h3
+                style={{
+                  color: "var(--primary)",
+                  fontSize: "1rem",
+                  marginBottom: 6,
+                }}
+              >
+                Track or upgrade your membership
+              </h3>
+              <p style={{ color: "var(--text-muted)", fontSize: ".9rem" }}>
+                Keep an eye on your application status and submit an upgrade or
+                renewal request whenever needed.
+              </p>
+            </div>
+            <Link to="/membership" className="btn btn-outline">
+              Manage Membership
+            </Link>
+          </div>
+        </div>
+
         <div className="grid-2">
           {/* Profile */}
           <div

@@ -413,14 +413,7 @@ export default function CPDPage() {
       {/* CPD Info */}
       <section className="section" style={{ background: "#fff" }}>
         <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 48,
-              alignItems: "center",
-            }}
-          >
+          <div className="cpd-info-layout">
             <div>
               <span className="section-label">CPD Requirements</span>
               <h2 className="section-title">
